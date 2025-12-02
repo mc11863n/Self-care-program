@@ -1,5 +1,7 @@
 class SkinCare:
 
-    def __init__():
+    def __init__(self, name):
+        return
+
 
     
