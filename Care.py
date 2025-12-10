@@ -4,7 +4,10 @@ class SkinCare:
         return
 def main():
 
+SkinCare= input("Enter your skin type (oily, dry, combination, sensitive, cystic acne): ").strip().lower()
 
+
+    
 
 
 
