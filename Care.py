@@ -1,31 +1,34 @@
 class Skin:
-    def __init__(self,skin_type = None,oily= None,dry = None ):
-        self.skin = skin_type
+    def __init__(self,skin = None,oily= None,dry = None, combination = None, sensative = None):
+        self.skin = skin
         self.oily = oily
         self.dry = dry
+        self.combination = combination
+        self.sensative = sensative
 
     def get_skin(self):
-        if self.skin == 'dry':
+        if self.skin == self.dry:
             return 'dry skin'
-        elif self.skin == 'oily':
+        elif self.skin == self.oily:
             return 'oily skin'
+        elif self.skin == self.combination:
+            return 'combination skin'
+        elif self.skin == self.sensative:
+            return 'sensative skin'
         else:
             return "No skin type detected"
         
 class Acne:
-    def __init__(self,name,large_pores = None, small_bumps = None, zits = None):
+    def __init__(self,name,clogge_pores = None, cytic_acne = None):
         self.name = name
-        self.large_pores = large_pores
-        self.small_bumps = small_bumps
-        self.zits = zits
+        self.clogge_pores = clogge_pores
+        self.cytic_acne = cytic_acne
 
     def get_acne_check(self):
-        if self.name == self.large_pores:
-            return "Large pores detected"
-        elif  self.name == self.small_bumps:
-            return "Small bumps detected"
-        elif self.name == self.zits:
-            return "Zits detected"
+        if self.name == self.clogge_pores:
+            return "clogged pores"
+        elif self.name == self.cytic_acne:
+            return "cytic acne"
         else:
             return "No acne issues"
 
@@ -57,8 +60,8 @@ class Budget:
 class SkinCare(Skin,Acne):
     def __init__(self,product_name):
         self.productname = product_name
-        Skin.__init__(self, skin_type = '', oily= '', dry= '')
-        Acne().__init__(name = '', large_pores = '', small_bumps = '', zits = '')
+        super().__init__(self, skin = '', oily= '', dry= '', combination= '', sensative= '')
+        super().__init__(name = '', clogge_pores = '', cytic_acne = '')
         
 
 
@@ -68,12 +71,12 @@ class SkinCare(Skin,Acne):
 
 
 def main():
-    user_skin = input("What skin do you have (oily or dry)? ")
-    user_acne = input("Do you have large pores, small bumps, or zits? (Enter type) ")
-    skin = Skin(skin = user_skin, oily='oily' if user_skin == 'oily' else '', dry='dry' if user_skin == 'dry' else '')
-    acne = Acne(name = user_acne, large_pores= 'largepores dectected' if user_acne == 'large pores dectected' else None, small_bumps= ' Small bumps dectected'if user_acne == 'small bumps detected' else None, zits= 'zits dectected' if user_acne == 'zits dectected' else None)
-    print(skin.get_skin())
-    print(acne.get_acne_check())
+    user_skin = input("What skin do you have oliy, dry, combination, sensitive? ")
+    user_acne = input("Do you have any acne issues (clogge pores dectected or cytic acne dectected)? ")
+    skin_type = Skin(skin = user_skin, oily='oily' if user_skin == 'oily' else '', dry='dry' if user_skin == 'dry' else '')
+    acne_type = Acne(name = user_acne, clogge_pores= 'clogge pores dectected' if user_acne == 'clogge pores dectected' else None, cytic_acne= 'cytic acne dectected' if user_acne == 'cytic acne dectected' else None)
+    print(acne_type.get_acne_check())
+    print(skin_type.get_skin())
 
 def main():
     name= input("Enter your name")
